@@ -19,7 +19,7 @@ libosmpbf.a: fileformat.pb.o osmformat.pb.o
 	$(AR) -cr $@ fileformat.pb.o osmformat.pb.o
 
 libosmpbf.so: fileformat.pb.o osmformat.pb.o
-	$(CXX) -shared -Wl,-soname,$(SONAME) -o $@ fileformat.pb.o osmformat.pb.o
+	$(CXX) -shared -Wl,-lprotoc,-lprotobuf,-install_name,$(SONAME) -o $@ fileformat.pb.o osmformat.pb.o
 
 %.pb.o: %.pb.cc
 	$(CXX) $(CXXFLAGS) -fPIC -c -o $@ $<
